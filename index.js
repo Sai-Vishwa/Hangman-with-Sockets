@@ -1,4 +1,5 @@
 const express = require('express');
+import 'dotenv/config.js';
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
@@ -14,13 +15,14 @@ const io = new Server(server,{
 
 
 let onlinelist = [];
+let PORT=process.env.PORT;
 let playerstosocketid = {};
 
 const db = require('./firebase')
 const collection = db.collection("Players");
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your client's origin
+  origin: 'https://hangman-with-friends.netlify.app/', // Replace with your client's origin
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true
@@ -300,8 +302,8 @@ io.on('connection', (socket) => {
   
 });
 
-server.listen(3205, () => {
-  console.log('Server is running on port 3205');
+server.listen(PORT, () => {
+  console.log('Server is running on port ');
 });
 
 
