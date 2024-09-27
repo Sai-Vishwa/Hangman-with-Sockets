@@ -4,6 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
 const server = http.createServer(app);
 const admin = require('firebase-admin');
 const io = new Server(server,{
